@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
-import { FaQuoteRight } from 'react-icons/fa';
-import data from './data';
+import React, { useState, useEffect } from 'react'
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
+import { FaQuoteRight } from 'react-icons/fa'
+import data from './data'
 import './styles.css'
 
 export default function App() {
-  const [people, setPeople] = useState(data);
-  const [index, setIndex] = React.useState(0);
+  const [services, setServices] = useState(data)
+  const [index, setIndex] = React.useState(0)
 
   useEffect(() => {
-    const lastIndex = people.length - 1;
+    const lastIndex = services.length - 1
     if (index < 0) {
-      setIndex(lastIndex);
+      setIndex(lastIndex)
     }
     if (index > lastIndex) {
-      setIndex(0);
+      setIndex(0)
     }
-  }, [index, people]);
+  }, [index, services])
 
   useEffect(() => {
     let slider = setInterval(() => {
-      setIndex(index + 1);
-    }, 5000);
+      setIndex(index + 1)
+    }, 5000)
     return () => {
-      clearInterval(slider);
-    };
-  }, [index]);
+      clearInterval(slider)
+    }
+  }, [index])
 
   return (
     <section className='section'>
       <div className='title'>
         <h2>
-          <span>/</span>reviews
+          <span>/</span>services
         </h2>
       </div>
       <div className='section-center'>
-        {people.map((person, personIndex) => {
-          const { id, image, name, title, quote } = person;
+        {services.map((service, serviceIndex) => {
+          const { id, image, name, title, quote } = service
 
-          let position = 'nextSlide';
-          if (personIndex === index) {
-            position = 'activeSlide';
+          let position = 'nextSlide'
+          if (serviceIndex === index) {
+            position = 'activeSlide'
           }
           if (
-            personIndex === index - 1 ||
-            (index === 0 && personIndex === people.length - 1)
+            serviceIndex === index - 1 ||
+            (index === 0 && serviceIndex === services.length - 1)
           ) {
-            position = 'lastSlide';
+            position = 'lastSlide'
           }
 
           return (
@@ -57,7 +57,7 @@ export default function App() {
               <p className='text'>{quote}</p>
               <FaQuoteRight className='icon' />
             </article>
-          );
+          )
         })}
         <button className='prev' onClick={() => setIndex(index - 1)}>
           <FiChevronLeft />
@@ -67,5 +67,5 @@ export default function App() {
         </button>
       </div>
     </section>
-  );
+  )
 }
