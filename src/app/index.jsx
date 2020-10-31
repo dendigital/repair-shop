@@ -1,5 +1,12 @@
 import React from 'react'
+import Navbar from './navbar'
+import Slider from './slider'
 
 export default function App() {
-  return <div>Welcome to React Starter Files</div>
+  return (
+    <>
+      <Navbar />
+      <Slider />
+    </>
+  )
 }
